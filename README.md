@@ -84,6 +84,31 @@ $.ajax({
 ```
 
 
+## Deploying to heroku
+
+For deploying to heroku, it is recommended to use the environment variables to
+store SERVICE, USERNAME, PASS and DESTINATION. Environment variables could be set
+from the app dashboard > settings. Let the PORT be assigned automatically.
+
+
+Now create a server script:
+
+```js
+var msnger = require('msnger');
+
+msnger.PORT = process.env.PORT;
+msnger.SERVICE = process.env.SERVICE;
+msnger.USERNAME = process.env.USERNAME;
+msnger.PASS = process.env.PASS;
+msnger.DESTINATION = process.env.DESTINATION;
+
+msnger.startServer();
+```
+
+Add a `start` script in package.json to run this script.
+Push to heroku and have fun!
+
+
 ## LICENSE
 
 MIT &copy; 2015 Sunny (darkowlzz)

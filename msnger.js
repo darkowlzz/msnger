@@ -10,10 +10,10 @@ var express    = require('express'),
 // Send Mail object
 var msnger = {
   PORT: 8000,
-  SERVICE: '',
-  USERNAME: '',
-  PASS: '',
-  DESTINATION: '',
+  SERVICE: process.env.SERVICE || '',
+  USERNAME: process.env.USERNAME || '',
+  PASS: process.env.PASS || '',
+  DESTINATION: process.env.DESTINATION || '',
 
   SUBJECT: function (req) {
     return util.format('Enquiry - %s', req.body.name);
@@ -27,7 +27,7 @@ var msnger = {
 
   setMailOptions: function (req) {
     return {
-      to: process.env.DESTINATION || this.DESTINATION,
+      to: this.DESTINATION,
       subject: this.SUBJECT(req),
       text: this.BODY(req)
     }
@@ -36,7 +36,7 @@ var msnger = {
   // Start the server
   startServer: function () {
     this.checkParameters();
-    var port = process.env.PORT || this.PORT;
+    var port = this.PORT;
     var server = app.listen(port, function () {
       var host = server.address().address;
       var port = server.address().port;
@@ -75,10 +75,10 @@ app.get('/', function (req, res) {
  */
 app.post('/message', function (req, res) {
   var transporter = nodemailer.createTransport({
-    service: process.env.SERVICE || msnger.SERVICE, // like gmail, Mailgun, etc
+    service: msnger.SERVICE, // like gmail, Mailgun, etc
     auth: {
-      user: process.env.USERNAME || msnger.USERNAME,
-      pass: process.env.PASS || msnger.PASS
+      user: msnger.USERNAME,
+      pass: msnger.PASS
     }
   });
 
