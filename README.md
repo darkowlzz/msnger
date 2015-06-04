@@ -1,0 +1,85 @@
+msnger
+============
+
+Setup messaging server with ease.
+
+## To use
+
+1. Install it:
+
+  ```bash
+  $ npm i msnger
+  ```
+
+2. Import it and use:
+
+  ```js
+  var msnger = require('msnger');
+
+  msnger.PORT = 3000; // optional, it defaults to process.env.PORT
+  msnger.SERVICE = 'gmail'; // Service name like gmail, mailgun, etc
+  msnger.USERNAME = 'postman'; // Username of the sender account
+  msnger.PASS = 'password'; // Password of the sender account
+  msnger.DESTINATION = 'receiver@xyzmail.com'; // Receiver's email account
+
+  msnger.startServer(); // start the messaging server
+  ```
+
+## Setting up the server
+
+The server could be started with the example code above. SERVICE, USERNAME, PASS
+and DESTINATION must be provided for the server to run. They could be defined as
+above or as environment variables. Set environment variables for all the above
+properties and run the server. It would look into the environment variables and
+pick up the required properties.
+
+
+## Setting Subject and Body
+
+msnger has a default subject and body structure but it might not fit for everyone.
+These default could be overridden by redefining them as follows
+
+```js
+msnger.SUBJECT = function (req) {
+  return util.format('Important message from %s', req.body.name);
+};
+
+msnger.BODY = function (req) {
+  return util.format('Message: %s \n%s\n%s', req.body.name, req.body.email);
+}
+```
+
+These functions have a request argument which contains the field data passed to
+`/message` in POST request. Both of these functions should return string.
+
+
+## Sending Message
+
+To initiate a message, send a POST request to http://host:port/message . 
+By default, `/message` expects `name`, `email`, `phone` and `message`.
+
+Here is an example of how you would send a POST request using ajax
+
+```js
+$.ajax({
+  url: "http://host:port/message",
+  type: "POST",
+  data: {
+    name: 'aName',
+    phone: 'aPhoneNumber',
+    email: 'anEmailAddress',
+    message: 'aMessage'
+  },
+  success: function() {
+    // Do something when success
+  },
+  error: function() {
+    // Do something else on error
+  }
+})
+```
+
+
+## LICENSE
+
+MIT &copy; 2015 Sunny (darkowlzz)

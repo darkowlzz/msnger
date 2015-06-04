@@ -1,0 +1,31 @@
+{
+  "name": "msnger",
+  "version": "0.1.0",
+  "description": "Easy to setup messaging server",
+  "main": "msnger.js",
+  "scripts": {
+    "start": "node msnger.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sunny <indiasuny000@gmail.com> (darkowlzz)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/darkowlzz/msnger.git"
+  },
+  "keywords": [
+    "message",
+    "messaging",
+    "mail",
+    "email",
+    "mail server",
+    "contact us"
+  ],
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "cors": "^2.7.1",
+    "express": "^4.12.4",
+    "lodash": "^3.9.3",
+    "nodemailer": "^1.3.4"
+  }
+}
