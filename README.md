@@ -3,7 +3,9 @@ msnger
 
 [![NPM](https://nodei.co/npm/msnger.png)](https://nodei.co/npm/msnger/)
 
-Setup messaging server with ease.
+Setup messaging server with ease for contact forms.
+
+![Contact Us Form](http://i.imgur.com/9ATqqfh.png)
 
 ## To use
 
