@@ -1,5 +1,7 @@
 msnger
-============
+======
+
+[![NPM](https://nodei.co/npm/msnger.png)](https://nodei.co/npm/msnger/)
 
 Setup messaging server with ease.
 
