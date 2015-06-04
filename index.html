@@ -113,6 +113,28 @@ By default, <code>/message</code> expects <code>name</code>, <code>email</code>,
 })</pre></div>
 
 <h2>
+<a id="deploying-to-heroku" class="anchor" href="#deploying-to-heroku" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deploying to heroku</h2>
+
+<p>For deploying to heroku, it is recommended to use the environment variables to
+store SERVICE, USERNAME, PASS and DESTINATION. Environment variables could be set
+from the app dashboard &gt; settings. Let the PORT be assigned automatically.</p>
+
+<p>Now create a server script:</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-k">var</span> msnger <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>msnger<span class="pl-pds">'</span></span>);
+
+msnger.PORT <span class="pl-k">=</span> <span class="pl-c1">process</span>.env.PORT;
+msnger.SERVICE <span class="pl-k">=</span> <span class="pl-c1">process</span>.env.SERVICE;
+msnger.USERNAME <span class="pl-k">=</span> <span class="pl-c1">process</span>.env.USERNAME;
+msnger.PASS <span class="pl-k">=</span> <span class="pl-c1">process</span>.env.PASS;
+msnger.DESTINATION <span class="pl-k">=</span> <span class="pl-c1">process</span>.env.DESTINATION;
+
+msnger.startServer();</pre></div>
+
+<p>Add a <code>start</code> script in package.json to run this script.
+Push to heroku and have fun!</p>
+
+<h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>LICENSE</h2>
 
 <p>MIT © 2015 Sunny (darkowlzz)</p>
